@@ -27,8 +27,13 @@ jobs:
           username: ${{ secrets.USER_DOCKER_01EDU_ORG }}
           password: ${{ secrets.SECRET_DOCKER_01EDU_ORG }}
 
+      - name: postgres-db source code changes check
+        id: check-changes-1
+        run: |
+            echo "changed_files=$(git diff --name-only --merge-base master -- srcs/postgres-db | xargs)" >> $GITHUB_OUTPUT
+
       - name: 🏗️ Build the 💻 postgres-db image
-        if: always()
+        if: steps.check-changes-1.outputs.changed_files != ''
         run: |
             docker build srcs/postgres-db/ --file srcs/postgres-db/Dockerfile --tag ghcr.io/01-edu/content-postgres-db
             docker push ghcr.io/01-edu/content-postgres-db
