@@ -49,8 +49,8 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v40
-        with:
-            files: srcs/postgres-db/**
+        # with:
+        #     files: srcs/postgres-db/**
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
       - name: 🏗️ Build the 💻 postgres-db image
         if: steps.changed-files.outputs.test_any_changed == 'true'
@@ -58,5 +58,6 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
+          echo WORK!
             # docker build srcs/postgres-db/ --file srcs/postgres-db/Dockerfile --tag ghcr.io/01-edu/content-postgres-db
             # docker push ghcr.io/01-edu/content-postgres-db
