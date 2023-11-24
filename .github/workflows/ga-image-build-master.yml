@@ -53,7 +53,7 @@ jobs:
             files: srcs/postgres-db/**
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
       - name: 🏗️ Build the 💻 postgres-db image
-        if: steps.changed-files-yaml.outputs.test_any_changed == 'true'
+        if: steps.changed-files.outputs.test_any_changed == 'true'
         run: | 
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
