@@ -34,11 +34,11 @@ jobs:
 
       - name: 🏗️ Build the 💻 postgres-db image
         env: 
-            changed_files: ${{ steps.check-changes-1.outputs.changed_files }}
+            CHANGED_FILES: ${{ steps.check-changes-1.outputs.changed_files }}
         run: | 
-                echo $changed_files
-                echo $changed_files != ""
-                echo $changed_files == ""
+                echo "$CHANGED_FILES"
+                echo "$CHANGED_FILES" 
+                echo "$CHANGED_FILES" 
 
             # docker build srcs/postgres-db/ --file srcs/postgres-db/Dockerfile --tag ghcr.io/01-edu/content-postgres-db
             # docker push ghcr.io/01-edu/content-postgres-db
