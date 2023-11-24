@@ -9,5 +9,4 @@ RUN rm -rf /var/lib/postgresql/13/main
 COPY tools/setup_db.sh /tmp/setup_db.sh
 
 
-
 ENTRYPOINT [ "bash", "/tmp/setup_db.sh" ]
