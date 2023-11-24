@@ -33,10 +33,9 @@ jobs:
             echo "changed_files=$(git diff --name-only --merge-base master -- srcs/postgres-db | xargs)" >> $GITHUB_OUTPUT
 
       - name: 🏗️ Build the 💻 postgres-db image
-        steps:
-            - env: 
-                changed_files: ${{ steps.check-changes-1.outputs.changed_files }}
-            run: | 
+        env: 
+            changed_files: ${{ steps.check-changes-1.outputs.changed_files }}
+        run: | 
                 echo $changed_files
                 echo $changed_files != ""
                 echo $changed_files == ""
