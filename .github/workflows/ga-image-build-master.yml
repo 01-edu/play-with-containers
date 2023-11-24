@@ -30,6 +30,7 @@ jobs:
       - name: postgres-db source code changes check
         id: check-changes-1
         run: |
+            echo $(git diff --name-only --merge-base master -- srcs/postgres-db)
             echo "changed_files=$(git diff --name-only --merge-base master -- srcs/postgres-db | xargs)" >> $GITHUB_OUTPUT
 
       - name: 🏗️ Build the 💻 postgres-db image
