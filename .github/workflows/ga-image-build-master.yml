@@ -24,13 +24,16 @@ jobs:
               for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
                 echo "$file was changed"
               done
+              echo ${{ steps.changed-files.outputs.any_changed }}
   build-image:
     name: 🏗️ Build Image
     runs-on: ubuntu-latest
 
     steps:
       - name: 🐧 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+            fetch-depth: 0 
 
       - name: 📦 Login to GitHub Container Registry
         uses: docker/login-action@v2
@@ -53,7 +56,7 @@ jobs:
         #     files: srcs/postgres-db/**
         # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
       - name: 🏗️ Build the 💻 postgres-db image
-        if: steps.changed-files.outputs.test_any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true'
         run: | 
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
