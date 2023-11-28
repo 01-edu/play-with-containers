@@ -5,51 +5,13 @@ on:
     branches: ["master"]
 
 jobs:
-  changed_files:
-        runs-on: ubuntu-latest  # windows-latest || macos-latest
-        name: Test changed-files
-        steps:
-          - uses: actions/checkout@v4
-            with:
-              fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
-    
-          - name: Get changed files
-            id: changed-files
-            uses: tj-actions/changed-files@v40
-    
-          # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
-    
-          - name: List all changed files
-            run: |
-              for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-                echo "$file was changed"
-              done
-              echo ${{ steps.changed-files.outputs.any_changed }}
-
-          - name: Get changed files-2
-            id: changed-files-2
-            uses: tj-actions/changed-files@v40
-            with:
-                files:
-                    scrs/**
-            # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
-      
-          - name: List all changed files
-            run: |
-                for file in ${{ steps.changed-files-2.outputs.all_changed_files }}; do
-                  echo "$file was changed"
-                done
-                echo ${{ steps.changed-files-2.outputs.any_changed }}
-
   build-image:
     name: 🏗️ Build Image
     runs-on: ubuntu-latest
 
     steps:
       - name: 🐧 Checkout
-        uses: actions/checkout@v4
-        with:
-            fetch-depth: 0 
+        uses: actions/checkout@v3
 
       - name: 📦 Login to GitHub Container Registry
         uses: docker/login-action@v2
@@ -65,19 +27,32 @@ jobs:
           username: ${{ secrets.USER_DOCKER_01EDU_ORG }}
           password: ${{ secrets.SECRET_DOCKER_01EDU_ORG }}
 
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v40
-        with:
-            files: |
-                Dockerfile
-        # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
-      - name: 🏗️ Build the 💻 postgres-db image
-        if: steps.changed-files.outputs.any_changed == 'true'
-        run: | 
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
-          done
-          echo WORK!
-            # docker build srcs/postgres-db/ --file srcs/postgres-db/Dockerfile --tag ghcr.io/01-edu/content-postgres-db
-            # docker push ghcr.io/01-edu/content-postgres-db
+      - name: 🏗️ Build the 💻 Postgres DB image
+        if: always()
+        run: |
+          docker build srcs/postgres-db/ --file srcs/postgres-db/Dockerfile --tag ghcr.io/01-edu/content-postgres-db
+          docker push ghcr.io/01-edu/content-postgres-db
+
+      - name: 🏗️ Build the 🚀 API Gateway image
+        if: always()
+        run: |
+          docker build srcs/api-gateway-app/ --file srcs/api-gateway-app/Dockerfile --tag ghcr.io/01-edu/content-api-gateway-app
+          docker push ghcr.io/01-edu/content-api-gateway-app
+
+      - name: 🏗️ Build the 💰 Billing App image
+        if: always()
+        run: |
+          docker build srcs/billing-app/ --file srcs/billing-app/Dockerfile --tag ghcr.io/01-edu/content-billing-app
+          docker push ghcr.io/01-edu/content-billing-app
+
+      - name: 🏗️ Build the 🧩 Inventory App image
+        if: always()
+        run: |
+          docker build srcs/inventory-app/ --file srcs/inventory-app/Dockerfile --tag ghcr.io/01-edu/content-inventory-app
+          docker push ghcr.io/01-edu/content-inventory-app
+
+      - name: 🏗️ Build the 🐰 Rabbitmq image
+        if: always()
+        run: |
+          docker build srcs/rabbitmq/ --file srcs/rabbitmq/Dockerfile --tag ghcr.io/01-edu/content-rabbitmq
+          docker push ghcr.io/01-edu/content-rabbitmq
