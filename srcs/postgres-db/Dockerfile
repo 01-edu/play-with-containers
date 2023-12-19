@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y postgresql postgresql-contrib
+RUN apt-get update && apt-get install -y postgresql-13 postgresql-contrib
 
 USER postgres
 
