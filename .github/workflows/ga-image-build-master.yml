@@ -27,12 +27,6 @@ jobs:
           username: ${{ secrets.USER_DOCKER_01EDU_ORG }}
           password: ${{ secrets.SECRET_DOCKER_01EDU_ORG }}
 
-      - name: 🏗️ Build the 💻 Postgres DB image
-        if: always()
-        run: |
-          docker build srcs/postgres-db/ --file srcs/postgres-db/Dockerfile --tag ghcr.io/01-edu/content-postgres-db
-          docker push ghcr.io/01-edu/content-postgres-db
-
       - name: 🏗️ Build the 🚀 API Gateway image
         if: always()
         run: |

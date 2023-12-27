@@ -1,0 +1,36 @@
+name: 🐳 On Master - Build Content Postgres DB Docker Image
+
+on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - "srcs/postgres-db/**"
+
+jobs:
+  build-image:
+    name: 🏗️ Build Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🐧 Checkout
+        uses: actions/checkout@v3
+
+      - name: 📦 Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🐳 Login to docker.01-edu.org Registry
+        uses: docker/login-action@v2
+        with:
+          registry: docker.01-edu.org
+          username: ${{ secrets.USER_DOCKER_01EDU_ORG }}
+          password: ${{ secrets.SECRET_DOCKER_01EDU_ORG }}
+
+      - name: 🏗️ Build the 💻 Postgres DB image
+        run: |
+          docker build srcs/postgres-db/ --file srcs/postgres-db/Dockerfile --tag ghcr.io/01-edu/content-postgres-db
+          docker push ghcr.io/01-edu/content-postgres-db
