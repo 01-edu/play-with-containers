@@ -16,21 +16,8 @@ jobs:
       - name: 🐧 Checkout
         uses: actions/checkout@v3
 
-      - name: 📦 Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 🐳 Login to docker.01-edu.org Registry
-        uses: docker/login-action@v2
-        with:
-          registry: docker.01-edu.org
-          username: ${{ secrets.USER_DOCKER_01EDU_ORG }}
-          password: ${{ secrets.SECRET_DOCKER_01EDU_ORG }}
-
       - name: 🏗️ Build the 🚀 API Gateway image
-        run: |
-          docker build srcs/api-gateway-app/ --file srcs/api-gateway-app/Dockerfile --tag ghcr.io/01-edu/content-api-gateway-app
-          docker push ghcr.io/01-edu/content-api-gateway-app
+        uses: ./.github/actions/build-image
+        with:
+          image-name: ghcr.io/01-edu/content-api-gateway-app:latest
+          src-dir: srcs/api-gateway-app/
