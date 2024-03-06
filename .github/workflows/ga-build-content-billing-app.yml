@@ -1,8 +1,11 @@
-name: 🐳 On Master - Build and Test Docker Image
+name: 🐳 On Master - Build Content Billing App Docker Image
 
 on:
   push:
-    branches: ["master"]
+    branches:
+      - 'master'
+    paths:
+      - 'srcs/billing-app/**'
 
 jobs:
   build-image:
@@ -27,8 +30,7 @@ jobs:
           username: ${{ secrets.USER_DOCKER_01EDU_ORG }}
           password: ${{ secrets.SECRET_DOCKER_01EDU_ORG }}
 
-      - name: 🏗️ Build the 🚀 API Gateway image
-        if: always()
+      - name: 🏗️ Build the 💰 Billing App image
         run: |
-          docker build srcs/api-gateway-app/ --file srcs/api-gateway-app/Dockerfile --tag ghcr.io/01-edu/content-api-gateway-app
-          docker push ghcr.io/01-edu/content-api-gateway-app
+          docker build srcs/billing-app/ --file srcs/billing-app/Dockerfile --tag ghcr.io/01-edu/content-billing-app
+          docker push ghcr.io/01-edu/content-billing-app
