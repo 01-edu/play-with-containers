@@ -44,9 +44,3 @@ jobs:
         run: |
           docker build srcs/inventory-app/ --file srcs/inventory-app/Dockerfile --tag ghcr.io/01-edu/content-inventory-app
           docker push ghcr.io/01-edu/content-inventory-app
-
-      - name: 🏗️ Build the 🐰 Rabbitmq image
-        if: always()
-        run: |
-          docker build srcs/rabbitmq/ --file srcs/rabbitmq/Dockerfile --tag ghcr.io/01-edu/content-rabbitmq
-          docker push ghcr.io/01-edu/content-rabbitmq
