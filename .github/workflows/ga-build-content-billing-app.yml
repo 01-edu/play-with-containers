@@ -3,9 +3,9 @@ name: 🐳 On Master - Build Content Billing App Docker Image
 on:
   push:
     branches:
-      - 'master'
+      - "master"
     paths:
-      - 'srcs/billing-app/**'
+      - "srcs/billing-app/**"
 
 jobs:
   build-image:
@@ -16,21 +16,9 @@ jobs:
       - name: 🐧 Checkout
         uses: actions/checkout@v3
 
-      - name: 📦 Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 🐳 Login to docker.01-edu.org Registry
-        uses: docker/login-action@v2
-        with:
-          registry: docker.01-edu.org
-          username: ${{ secrets.USER_DOCKER_01EDU_ORG }}
-          password: ${{ secrets.SECRET_DOCKER_01EDU_ORG }}
-
       - name: 🏗️ Build the 💰 Billing App image
-        run: |
-          docker build srcs/billing-app/ --file srcs/billing-app/Dockerfile --tag ghcr.io/01-edu/content-billing-app
-          docker push ghcr.io/01-edu/content-billing-app
+        uses: ./.github/actions/build-image
+        with:
+          image-name: ghcr.io/01-edu/content-billing-app:latest
+          src-dir: srcs/billing-app/
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
