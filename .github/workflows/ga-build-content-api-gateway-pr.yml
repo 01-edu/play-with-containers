@@ -1,0 +1,35 @@
+name: 🌳 On Branch - Build Content API Gateway Docker Image
+
+on:
+  pull_request:
+    branches: ["master"]
+    paths:
+      - 'srcs/api-gateway-app/**'
+
+jobs:
+  build-image:
+    name: 🏗️ Build Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🐧 Checkout
+        uses: actions/checkout@v3
+
+      - name: 📦 Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🐳 Login to docker.01-edu.org Registry
+        uses: docker/login-action@v2
+        with:
+          registry: docker.01-edu.org
+          username: ${{ secrets.USER_DOCKER_01EDU_ORG }}
+          password: ${{ secrets.SECRET_DOCKER_01EDU_ORG }}
+
+      - name: 🏗️ Build the 🚀 API Gateway image
+        run: |
+          docker build srcs/api-gateway-app/ --file srcs/api-gateway-app/Dockerfile --tag ghcr.io/01-edu/content-api-gateway-app:PR${{ github.event.pull_request.number }}
+          docker push ghcr.io/01-edu/content-api-gateway-app:PR${{ github.event.pull_request.number }}
