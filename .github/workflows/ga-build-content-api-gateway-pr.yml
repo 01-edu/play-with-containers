@@ -1,4 +1,4 @@
-name: 🐳 On Master - Build Content API Gateway Docker Image
+name: 🌳 On Branch - Build Content API Gateway Docker Image
 
 on:
   pull_request:
