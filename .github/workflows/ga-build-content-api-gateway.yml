@@ -21,3 +21,4 @@ jobs:
         with:
           image-name: ghcr.io/01-edu/content-api-gateway-app:latest
           src-dir: srcs/api-gateway-app/
+          gh-token: ${{ secrets.GITHUB_TOKEN }}

@@ -3,9 +3,9 @@ name: 🐳 On Master - Build Content Billing App Docker Image
 on:
   push:
     branches:
-      - 'master'
+      - "master"
     paths:
-      - 'srcs/billing-app/**'
+      - "srcs/billing-app/**"
 
 jobs:
   build-image:
@@ -21,3 +21,4 @@ jobs:
         with:
           image-name: ghcr.io/01-edu/content-billing-app:latest
           src-dir: srcs/billing-app/
+          gh-token: ${{ secrets.GITHUB_TOKEN }}

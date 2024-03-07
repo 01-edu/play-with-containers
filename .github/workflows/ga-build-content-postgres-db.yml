@@ -21,3 +21,4 @@ jobs:
         with:
           image-name: ghcr.io/01-edu/content-postgres-db:latest
           src-dir: srcs/postgres-db/
+          gh-token: ${{ secrets.GITHUB_TOKEN }}

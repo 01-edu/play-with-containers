@@ -21,3 +21,4 @@ jobs:
         with:
           image-name: ghcr.io/01-edu/content-rabbitmq:latest
           src-dir: srcs/rabbitmq/
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
