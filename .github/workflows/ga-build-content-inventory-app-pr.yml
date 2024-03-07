@@ -1,4 +1,4 @@
-name: 🐳 On Master - Build Content Inventory App Docker Image
+name: 🌳 On Branch - Build Content Inventory App Docker Image
 
 on:
   pull_request:

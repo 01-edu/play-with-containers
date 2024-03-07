@@ -1,4 +1,4 @@
-name: 🐳 On Master - Build Content RabbitMQ Docker Image
+name: 🌳 On Branch - Build Content RabbitMQ Docker Image
 
 on:
   pull_request:
