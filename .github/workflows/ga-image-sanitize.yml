@@ -42,7 +42,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: PR${{github.event.pull_request.number}}
         continue-on-error: true
-        
+
       - name: 🗑️ Delete 🐰 Rabbitmq image PR${{github.event.pull_request.number}}
         uses: bots-house/ghcr-delete-image-action@v1.1.0
         with:
@@ -51,7 +51,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: PR${{github.event.pull_request.number}}
         continue-on-error: true
-        
+
       - name: 🗑️ Delete 💰 Billing App image PR${{github.event.pull_request.number}}
         uses: bots-house/ghcr-delete-image-action@v1.1.0
         with:
@@ -92,7 +92,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           untagged-keep-latest: ${{ github.event.inputs.keep-last }}
         continue-on-error: true
-        
+
       - name: 🗑️ Delete 🐰 Rabbitmq image
         uses: bots-house/ghcr-delete-image-action@v1.1.0
         with:
@@ -101,7 +101,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           untagged-keep-latest: ${{ github.event.inputs.keep-last }}
         continue-on-error: true
-        
+
       - name: 🗑️ Delete 💰 Billing App image
         uses: bots-house/ghcr-delete-image-action@v1.1.0
         with:

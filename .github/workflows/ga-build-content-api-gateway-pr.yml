@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: ["master"]
     paths:
-      - 'srcs/api-gateway-app/**'
+      - "srcs/api-gateway-app/**"
 
 jobs:
   build-image:

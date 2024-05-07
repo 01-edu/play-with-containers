@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: ["master"]
     paths:
-      - 'srcs/rabbitmq/**'
+      - "srcs/rabbitmq/**"
 
 jobs:
   build-image:

@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: ["master"]
     paths:
-      - 'srcs/inventory-app/**'
+      - "srcs/inventory-app/**"
 
 jobs:
   build-image:
