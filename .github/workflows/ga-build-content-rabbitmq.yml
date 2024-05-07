@@ -3,9 +3,9 @@ name: 🐳 On Master - Build Content RabbitMQ Docker Image
 on:
   push:
     branches:
-      - 'master'
+      - "master"
     paths:
-      - 'srcs/rabbitmq/**'
+      - "srcs/rabbitmq/**"
   workflow_dispatch:
 
 jobs:
@@ -23,3 +23,5 @@ jobs:
           image-name: ghcr.io/01-edu/content-rabbitmq:latest
           src-dir: srcs/rabbitmq/
           gh-token: ${{ secrets.GITHUB_TOKEN }}
+          docker-un: ${{ secrets.USER_DOCKER_01EDU_ORG }}
+          docker-pw: ${{ secrets.SECRET_DOCKER_01EDU_ORG }}

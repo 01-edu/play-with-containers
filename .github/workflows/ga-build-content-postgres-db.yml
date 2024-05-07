@@ -3,9 +3,9 @@ name: 🐳 On Master - Build Content Postgres DB Docker Image
 on:
   push:
     branches:
-      - 'master'
+      - "master"
     paths:
-      - 'srcs/postgres-db/**'
+      - "srcs/postgres-db/**"
   workflow_dispatch:
 
 jobs:
@@ -23,3 +23,5 @@ jobs:
           image-name: ghcr.io/01-edu/content-postgres-db:latest
           src-dir: srcs/postgres-db/
           gh-token: ${{ secrets.GITHUB_TOKEN }}
+          docker-un: ${{ secrets.USER_DOCKER_01EDU_ORG }}
+          docker-pw: ${{ secrets.SECRET_DOCKER_01EDU_ORG }}
