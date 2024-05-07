@@ -22,4 +22,3 @@ jobs:
           image-name: ghcr.io/01-edu/content-inventory-app:latest
           src-dir: srcs/inventory-app/
           gh-token: ${{ secrets.GITHUB_TOKEN }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
