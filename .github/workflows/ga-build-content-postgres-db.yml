@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: 🐧 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🏗️ Build the 💻 Postgres DB image
         uses: ./.github/actions/build-image
