@@ -6,6 +6,7 @@ on:
       - 'master'
     paths:
       - 'srcs/rabbitmq/**'
+  workflow_dispatch:
 
 jobs:
   build-image:
