@@ -1,5 +1,13 @@
 # play-with-conatiners-py
 
+> [!IMPORTANT]
+> [![🐳 On Master - Build Content RabbitMQ Docker Image](https://github.com/01-edu/play-with-containers/actions/workflows/ga-build-content-rabbitmq.yml/badge.svg)](https://github.com/01-edu/play-with-containers/actions/workflows/ga-build-content-rabbitmq.yml)
+> [![🐳 On Master - Build Content Postgres DB Docker Image](https://github.com/01-edu/play-with-containers/actions/workflows/ga-build-content-postgres-db.yml/badge.svg)](https://github.com/01-edu/play-with-containers/actions/workflows/ga-build-content-postgres-db.yml)
+> [![🐳 On Master - Build Content Inventory App Docker Image](https://github.com/01-edu/play-with-containers/actions/workflows/ga-build-content-inventory-app.yml/badge.svg)](https://github.com/01-edu/play-with-containers/actions/workflows/ga-build-content-inventory-app.yml)
+> [![🐳 On Master - Build Content Billing App Docker Image](https://github.com/01-edu/play-with-containers/actions/workflows/ga-build-content-billing-app.yml/badge.svg)](https://github.com/01-edu/play-with-containers/actions/workflows/ga-build-content-billing-app.yml)
+> [![🐳 On Master - Build Content API Gateway Docker Image](https://github.com/01-edu/play-with-containers/actions/workflows/ga-build-content-api-gateway.yml/badge.svg)](https://github.com/01-edu/play-with-containers/actions/workflows/ga-build-content-api-gateway.yml)
+> [![🧼 Sanitize – Generated Docker Images](https://github.com/01-edu/play-with-containers/actions/workflows/ga-image-sanitize.yml/badge.svg)](https://github.com/01-edu/play-with-containers/actions/workflows/ga-image-sanitize.yml)
+
 More information about the project
 [here](https://github.com/01-edu/public/blob/master/subjects/devops/play-with-containers/README.md)
 
